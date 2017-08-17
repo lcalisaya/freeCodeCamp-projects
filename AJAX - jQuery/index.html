@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AJAX con jQuery!</title>
+  <style>*{font-family: sans-serif;}</style>
+</head>
+<body>
+  <h1>AJAX with jQuery!</h1>
+  <p id="demo">Let AJAX change this text</p>
+  <button type="button" onclick="loadDoc()">Change content</button>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <script>
+      //El método $.get solo se encarga de obtener los datos sin la necesidad de agregar contenido en el DOM.
+      function loadDoc() {
+        $.get("https://cors-anywhere.herokuapp.com/http://carnes.cc/code/ajax_example.txt",
+        function(data, status){
+          console.log("Data:"+ data);
+          console.log("Status:" + status);
+        }
+      )};
+
+      //El método $.load directamente carga los datos obtenidos en un elemento del DOM
+      // function loadDoc() {
+      //   $('#demo').load("https://cors-anywhere.herokuapp.com/http://carnes.cc/code/ajax_example.txt",
+      //   function(responseTxt, statusTxt, xhr){
+      //     if (statusTxt == 'success') {
+      //       alert ('Contenido externo cargado exitosamente!');
+      //       console.log(responseTxt, statusTxt, xhr);
+      //     }
+      //     if (statusTxt == 'error') {
+      //       alert ("Error: " + xhr.status + ": " + xhr.statusText);
+      //       console.log(responseTxt, statusTxt, xhr);
+      //     }
+      //   });
+      // }
+
+      //Una manera de enviar datos es con el método $.post
+      function submitForm() {
+        $.post("https://cors-anywhere.herokuapp.com/http://carnes.cc/code/ajax_example.txt",
+        {
+          name: 'Lucia Calisaya',
+          ciudad: 'Buenos Aires'
+        },
+        function(data, status){
+          console.log("Data:"+ data);
+          console.log("Status:" + status);
+        }
+      )};
+  </script>
+</body>
+</html>
